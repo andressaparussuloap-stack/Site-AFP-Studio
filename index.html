@@ -1,0 +1,943 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="AFP Studio: criação de sites personalizados para pequenos negócios.">
+
+    <title>AFP Studio | Criação de Sites</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --preto: #0b0b0f;
+            --fundo: #12121a;
+            --roxo: #8b5cf6;
+            --roxo-escuro: #6d28d9;
+            --branco: #ffffff;
+            --cinza: #b8b8c7;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--preto);
+            color: var(--branco);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1150px;
+            margin: auto;
+        }
+
+        .roxo {
+            color: var(--roxo);
+        }
+
+        /* CABEÇALHO */
+
+        header {
+            background: var(--preto);
+            border-bottom: 1px solid #272731;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .navbar {
+            min-height: 75px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: var(--roxo);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        nav a {
+            font-size: 0.95rem;
+            color: #dedee8;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--roxo);
+        }
+
+        /* BOTÕES */
+
+        .botao {
+            display: inline-block;
+            background: var(--roxo);
+            color: white;
+            padding: 13px 23px;
+            border-radius: 8px;
+            font-weight: bold;
+            border: 1px solid var(--roxo);
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .botao:hover {
+            background: var(--roxo-escuro);
+            transform: translateY(-2px);
+        }
+
+        .botao-secundario {
+            background: transparent;
+            border-color: #555565;
+        }
+
+        .botao-secundario:hover {
+            border-color: var(--roxo);
+            background: #191323;
+        }
+
+        /* INÍCIO */
+
+
+        .hero {
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            padding: 90px 0;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(11, 11, 15, 0.97) 0%,
+                    rgba(11, 11, 15, 0.82) 50%,
+                    rgba(11, 11, 15, 0.55) 100%
+                ),
+                url("assets/img/fundo-afp.jpg");
+
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+
+        .hero-conteudo {
+            max-width: 780px;
+        }
+
+        .etiqueta {
+            display: inline-block;
+            color: #c4a9ff;
+            background: #8b5cf61c;
+            border: 1px solid #8b5cf655;
+            padding: 7px 15px;
+            border-radius: 30px;
+            margin-bottom: 25px;
+            font-size: 0.85rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            line-height: 1.12;
+            letter-spacing: -2px;
+            margin-bottom: 25px;
+        }
+
+        .hero p {
+            color: var(--cinza);
+            font-size: 1.1rem;
+            max-width: 620px;
+            margin-bottom: 30px;
+        }
+
+        .botoes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .beneficios {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin-top: 35px;
+            color: #d2d2df;
+            font-size: 0.9rem;
+        }
+
+        .beneficios span::before {
+            content: "✓ ";
+            color: var(--roxo);
+            font-weight: bold;
+        }
+
+        /* SEÇÕES */
+
+        section {
+            padding: 85px 0;
+            scroll-margin-top: 75px;
+        }
+
+        .titulo-secao {
+            text-align: center;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 15px;
+        }
+
+        .subtitulo {
+            max-width: 650px;
+            text-align: center;
+            color: var(--cinza);
+            margin: 0 auto 45px;
+        }
+
+        /* SERVIÇOS */
+
+        .servicos {
+            background: var(--fundo);
+        }
+
+        .grade-servicos {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .card {
+            padding: 30px;
+            background: #181820;
+            border: 1px solid #2c2c38;
+            border-radius: 14px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--roxo);
+        }
+
+        .icone {
+            width: 52px;
+            height: 52px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #8b5cf622;
+            border-radius: 12px;
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: var(--cinza);
+            font-size: 0.95rem;
+        }
+
+        /* SOBRE */
+
+        .sobre-grade {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .sobre-texto h2 {
+            font-size: 2.4rem;
+            line-height: 1.2;
+            margin-bottom: 22px;
+        }
+
+        .sobre-texto p {
+            color: var(--cinza);
+            margin-bottom: 18px;
+        }
+
+        .sobre-painel {
+            padding: 32px;
+            background: linear-gradient(145deg, #26183e, #17171f);
+            border: 1px solid #42305d;
+            border-radius: 16px;
+        }
+
+        .sobre-painel h3 {
+            margin-bottom: 22px;
+            font-size: 1.4rem;
+        }
+
+        .item-sobre {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .item-sobre:last-child {
+            margin-bottom: 0;
+        }
+
+        .check {
+            color: var(--roxo);
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .item-sobre p {
+            color: var(--cinza);
+            font-size: 0.92rem;
+        }
+
+        /* PORTFÓLIO */
+
+        .portfolio {
+            background: var(--fundo);
+        }
+
+        .grade-portfolio {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .projeto {
+            overflow: hidden;
+            background: #181820;
+            border: 1px solid #30303c;
+            border-radius: 14px;
+            transition: 0.3s;
+        }
+
+        .projeto:hover {
+            transform: translateY(-4px);
+            border-color: var(--roxo);
+        }
+
+        .projeto-visual {
+            min-height: 220px;
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(
+                circle,
+                #39245f,
+                #17131f 75%
+            );
+        }
+
+        .mini-site {
+            width: 100%;
+            max-width: 360px;
+            min-height: 150px;
+            background: white;
+            color: #17131f;
+            padding: 25px;
+            border-radius: 9px;
+            box-shadow: 0 15px 35px #0005;
+        }
+
+        .mini-site h3 {
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+        }
+
+        .mini-site p {
+            color: #555;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+        }
+
+        .mini-botao {
+            display: inline-block;
+            padding: 7px 12px;
+            background: var(--roxo);
+            color: white;
+            border-radius: 5px;
+            font-size: 0.8rem;
+        }
+
+        .projeto-info {
+            padding: 24px;
+        }
+
+        .projeto-info h3 {
+            margin-bottom: 8px;
+        }
+
+        .projeto-info p {
+            color: var(--cinza);
+            font-size: 0.93rem;
+            margin-bottom: 18px;
+        }
+
+        .link-projeto {
+            color: #b99aff;
+            font-weight: bold;
+        }
+
+        .link-projeto:hover {
+            color: white;
+        }
+
+        /* CONTATO */
+
+        .contato {
+            text-align: center;
+        }
+
+        .contato-conteudo {
+            max-width: 720px;
+            margin: auto;
+            padding: 45px 30px;
+            background: linear-gradient(145deg, #211532, #12121a);
+            border: 1px solid #493266;
+            border-radius: 18px;
+        }
+
+        .contato h2 {
+            font-size: clamp(1.8rem, 4vw, 2.7rem);
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .contato p {
+            color: var(--cinza);
+            margin-bottom: 28px;
+        }
+
+        /* RODAPÉ */
+
+        footer {
+            border-top: 1px solid #292934;
+            padding: 28px 0;
+            text-align: center;
+            color: var(--cinza);
+            font-size: 0.9rem;
+        }
+
+        footer .logo {
+            display: inline-block;
+            margin-bottom: 8px;
+            color: white;
+        }
+
+        /* RESPONSIVIDADE */
+
+        @media (max-width: 850px) {
+            .navbar {
+                flex-wrap: wrap;
+                padding: 18px 0;
+            }
+
+            nav {
+                gap: 15px;
+                flex-wrap: wrap;
+            }
+
+            .grade-servicos {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .sobre-grade {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav {
+                width: 100%;
+                gap: 12px 18px;
+            }
+
+            nav a {
+                font-size: 0.88rem;
+            }
+
+            nav .botao {
+                padding: 9px 12px;
+            }
+
+            .hero {
+                min-height: auto;
+                padding: 75px 0;
+            }
+
+            .hero h1 {
+                letter-spacing: -1px;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .beneficios {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            section {
+                padding: 65px 0;
+            }
+
+            .grade-servicos,
+            .grade-portfolio {
+                grid-template-columns: 1fr;
+            }
+
+            .card {
+                padding: 25px;
+            }
+
+            .sobre-texto h2 {
+                font-size: 2rem;
+            }
+
+            .sobre-painel {
+                padding: 25px;
+            }
+
+            .projeto-visual {
+                min-height: 190px;
+            }
+
+            .contato-conteudo {
+                padding: 35px 22px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                transition: none !important;
+                animation: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- CABEÇALHO -->
+    <header>
+        <div class="container navbar">
+
+            <a href="#inicio" class="logo">
+                AFP<span> Studio</span>
+            </a>
+
+            <nav aria-label="Menu principal">
+                <a href="#inicio">Início</a>
+                <a href="#servicos">Serviços</a>
+                <a href="#sobre">Sobre</a>
+                <a href="#portfolio">Portfólio</a>
+                <a href="#contato" class="botao">Solicitar orçamento</a>
+            </nav>
+
+        </div>
+    </header>
+
+    <main>
+
+        <!-- INÍCIO -->
+        <section class="hero" id="inicio">
+            <div class="container">
+                <div class="hero-conteudo">
+
+                    <span class="etiqueta">
+                        Criação de sites personalizados
+                    </span>
+
+                    <h1>
+                        Seu negócio merece um site
+                        <span class="roxo">profissional.</span>
+                    </h1>
+
+                    <p>
+                        Transformo ideias em páginas modernas para ajudar
+                        pequenos negócios a fortalecer sua presença digital
+                        e apresentar seus serviços na internet.
+                    </p>
+
+                    <div class="botoes">
+                        <a href="#contato" class="botao">
+                            Quero meu site
+                        </a>
+
+                        <a href="#portfolio" class="botao botao-secundario">
+                            Conhecer projetos
+                        </a>
+                    </div>
+
+                    <div class="beneficios">
+                        <span>Design personalizado</span>
+                        <span>Layout responsivo</span>
+                        <span>Atendimento direto</span>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVIÇOS -->
+        <section class="servicos" id="servicos">
+            <div class="container">
+
+                <h2 class="titulo-secao">
+                    O que posso criar para <span class="roxo">você?</span>
+                </h2>
+
+                <p class="subtitulo">
+                    Soluções digitais para apresentar sua empresa,
+                    divulgar seus serviços e conquistar novos clientes.
+                </p>
+
+                <div class="grade-servicos">
+
+                    <article class="card">
+                        <div class="icone" aria-hidden="true">✦</div>
+                        <h3>Site institucional</h3>
+                        <p>
+                            Apresente sua empresa, sua história, seus
+                            serviços e seus canais de atendimento em
+                            um site profissional.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <div class="icone" aria-hidden="true">▣</div>
+                        <h3>Landing page</h3>
+                        <p>
+                            Uma página criada para divulgar um serviço,
+                            apresentar uma oferta ou direcionar clientes
+                            para entrar em contato.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <div class="icone" aria-hidden="true">⌘</div>
+                        <h3>Site para profissionais</h3>
+                        <p>
+                            Uma vitrine digital para salões, barbearias,
+                            autônomos e pequenos negócios que querem
+                            apresentar seu trabalho.
+                        </p>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SOBRE -->
+        <section id="sobre">
+            <div class="container sobre-grade">
+
+                <div class="sobre-texto">
+                    <h2>
+                        Tecnologia com propósito e
+                        <span class="roxo">personalidade.</span>
+                    </h2>
+
+                    <p>
+                        A AFP Studio nasceu com o objetivo de ajudar
+                        pequenos negócios a terem seu espaço na internet
+                        por meio de sites personalizados.
+                    </p>
+
+                    <p>
+                        Cada projeto é pensado para apresentar a identidade
+                        do negócio, facilitar o acesso às informações e
+                        oferecer uma experiência agradável aos visitantes.
+                    </p>
+
+                    <a href="#contato" class="botao">
+                        Vamos conversar?
+                    </a>
+                </div>
+
+                <div class="sobre-painel">
+                    <h3>O que você encontra na AFP Studio</h3>
+
+                    <div class="item-sobre">
+                        <span class="check">✓</span>
+                        <div>
+                            <strong>Visual personalizado</strong>
+                            <p>Um design alinhado à identidade do seu negócio.</p>
+                        </div>
+                    </div>
+
+                    <div class="item-sobre">
+                        <span class="check">✓</span>
+                        <div>
+                            <strong>Adaptação para celular</strong>
+                            <p>Layout preparado para diferentes tamanhos de tela.</p>
+                        </div>
+                    </div>
+
+                    <div class="item-sobre">
+                        <span class="check">✓</span>
+                        <div>
+                            <strong>Contato facilitado</strong>
+                            <p>Links para WhatsApp e outras formas de atendimento.</p>
+                        </div>
+                    </div>
+
+                    <div class="item-sobre">
+                        <span class="check">✓</span>
+                        <div>
+                            <strong>Atendimento personalizado</strong>
+                            <p>Uma conversa para entender o que seu negócio precisa.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- PORTFÓLIO -->
+        <section class="portfolio" id="portfolio">
+            <div class="container">
+
+                <h2 class="titulo-secao">
+                    Projetos em <span class="roxo">destaque</span>
+                </h2>
+
+                <p class="subtitulo">
+                    Conheça alguns exemplos de páginas e projetos
+                    desenvolvidos para negócios.
+                </p>
+
+                <div class="grade-portfolio">
+
+                    <article class="projeto">
+
+                        <div class="projeto-visual">
+                            <div class="mini-site">
+                                <h3>AFP Studio - Portfolio</h3>
+                                <p>
+                                    Conheça nosso trabalho e descubra como podemos ajudar
+                                    seu negócio a ter uma presença digital profissional.
+                                
+                                    
+                                </p>
+                                <span class="mini-botao">
+                                    Conheça nossos serviços
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="projeto-info">
+                            <h3>Black Bird Barbearia</h3>
+                            <p>
+                                Site demonstrativo para barbearia,
+                                com apresentação de serviços e identidade
+                                visual em preto e dourado.
+                            </p>
+
+                            <!-- Substitua pelo link real do projeto -->
+                            <a
+                                class="link-projeto"
+                                href="https://andressaparussuloap-stack.github.io/site-barbearia-blackbird/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                Ver projeto ↗
+                            </a>
+                        </div>
+                        <div class="projeto-info">
+                            <h3>Studio Bella Salão</h3>
+                            <p>
+                                Site demonstrativo para salão de beleza,
+                                com apresentação de serviços e identidade
+                                visual em tons de rosa.
+                            </p>
+
+                            <a 
+                                class="link-projeto"
+                                href="https://andressaparussuloap-stack.github.io/Studio-Bella/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                Ver projeto ↗
+    
+                            </a>
+                        </div>
+                        <div class="projeto-info">
+                            <h3>Cotton Candy B.B Vestuário Infantil</h3>
+                            <p>
+                                Site demonstrativo para loja de roupas
+                                infantis, com apresentação de produtos
+                                e identidade visual em tons de azul.
+                            </p>
+
+                            <a 
+                                class="link-projeto"
+                                href="https://afpstudio.github.io/cotton-candy-bb/index.html"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                Ver projeto ↗
+                            </a>
+                        </div>
+
+                        <div class="projeto-info">
+                            <h3>Boutique Açaí - Comércio</h3>
+
+                            <p>
+                                Site demonstrativo para loja de produtos naturais,
+                                com apresentação de produtos e identidade visual
+                                em tons de verde.
+                            </p>
+
+                            <a 
+                                class="link-projeto"
+                                href="https://afpstudio.github.io/Com-rcio-A-a---Boutique-A-a-/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                Ver projeto ↗
+    
+                            </a>
+
+                    </article>
+
+                    <article class="projeto">
+
+                        <div class="projeto-visual">
+                            <div class="mini-site">
+                                <h3>SEU NEGÓCIO</h3>
+                                <p>
+                                    Uma presença digital feita
+                                    para valorizar sua marca.
+                                </p>
+                                <span class="mini-botao">
+                                    Conheça a proposta
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="projeto-info">
+                            <h3>Projeto personalizado</h3>
+                            <p>
+                                Um exemplo de como a AFP Studio pode
+                                desenvolver uma página alinhada à
+                                identidade de diferentes negócios.
+                            </p>
+
+                            <a href="#contato" class="link-projeto">
+                                Solicitar um projeto ↗
+                            </a>
+                        </div>
+
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTATO -->
+        <section class="contato" id="contato">
+            <div class="container">
+
+                <div class="contato-conteudo">
+
+                    <span class="etiqueta">
+                        Seu próximo projeto começa aqui
+                    </span>
+
+                    <h2>
+                        Vamos colocar seu negócio
+                        <span class="roxo">na internet?</span>
+                    </h2>
+
+                    <p>
+                        Conte um pouco sobre sua empresa e o site
+                        que você deseja criar. Vamos conversar sobre
+                        as possibilidades para o seu negócio.
+                    </p>
+
+                    <!-- Troque pelo número da AFP Studio -->
+                    <a
+                        class="botao"
+                        href="https://wa.me/5511948685722?text=Ol%C3%A1%21%20Conheci%20a%20AFP%20Studio%20e%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20um%20site."
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Solicitar orçamento pelo WhatsApp
+                    </a>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer>
+        <div class="container">
+
+            <a href="#inicio" class="logo">
+                AFP<span> Studio</span>
+            </a>
+
+            <p>
+                Sites personalizados para pequenos negócios.
+            </p>
+
+            <p>
+                &copy; <span id="ano">2026</span> AFP Studio.
+                Todos os direitos reservados.
+            </p>
+
+        </div>
+    </footer>
+
+    <script>
+        // Atualiza o ano automaticamente.
+        document.getElementById("ano").textContent =
+            new Date().getFullYear();
+    </script>
+
+</body>
+</html>
